@@ -1,17 +1,16 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import type { MouseEventHandler } from "react";
 import { api } from "../utils/api";
 const Home: NextPage = () => {
   const getAllItems = api.getItem.getItems.useQuery();
+  const deletedItem = api.deleteItem.deleteItem.useMutation();
   const handleEdit = (id: string) => {
     console.log(id);
   };
   const handleDelete = (id: string) => {
-    console.log(id);
+    const res = deletedItem.mutate(id);
   };
-  console.log(getAllItems);
   return (
     <>
       <Head>

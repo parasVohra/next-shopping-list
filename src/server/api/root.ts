@@ -1,6 +1,7 @@
 import { createTRPCRouter } from "./trpc";
 import { ItemRouter } from "./routers/item";
 import { SubscribeRouter } from "./routers/subscriber";
+import { DeleteItemRouter } from "./routers/deleteItem";
 /**
  * This is the primary router for your server.
  *
@@ -9,6 +10,7 @@ import { SubscribeRouter } from "./routers/subscriber";
 export const appRouter = createTRPCRouter({
   addItem: ItemRouter,
   getItem: SubscribeRouter,
+  deleteItem: DeleteItemRouter,
 });
 
 // export type definition of API
