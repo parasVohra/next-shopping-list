@@ -5,7 +5,7 @@ import type { ChangeEvent } from "react";
 import { useState } from "react";
 
 import { api } from "../utils/api";
-interface FormData {
+export interface FormData {
   name: string;
 }
 

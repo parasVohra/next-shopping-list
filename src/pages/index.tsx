@@ -1,8 +1,17 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-
+import type { MouseEventHandler } from "react";
+import { api } from "../utils/api";
 const Home: NextPage = () => {
+  const getAllItems = api.getItem.getItems.useQuery();
+  const handleEdit = (id: string) => {
+    console.log(id);
+  };
+  const handleDelete = (id: string) => {
+    console.log(id);
+  };
+  console.log(getAllItems);
   return (
     <>
       <Head>
@@ -19,6 +28,29 @@ const Home: NextPage = () => {
           >
             Add Shopping Item
           </Link>
+        </div>
+        <div>
+          {getAllItems.data?.map((item, index) => {
+            return (
+              <div key={index} className=" flex justify-between">
+                <h3 className="m-auto"> {item.name}</h3>
+                <button
+                  className="m-4 rounded-md bg-gray-600 p-3 "
+                  type="button"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="m-4 rounded-md bg-red-400 p-3"
+                  onClick={() => handleDelete(item.id)}
+                  type="button"
+                >
+                  Delete
+                </button>
+              </div>
+            );
+          })}
         </div>
       </main>
     </>
