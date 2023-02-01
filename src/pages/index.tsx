@@ -8,8 +8,16 @@ const Home: NextPage = () => {
   const handleEdit = (id: string) => {
     console.log(id);
   };
+  const callRefetch = async () => {
+    await getAllItems.refetch();
+  };
   const handleDelete = (id: string) => {
-    const res = deletedItem.mutate(id);
+    const res = deletedItem.mutateAsync(id);
+    res
+      .then(() => callRefetch())
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <>
