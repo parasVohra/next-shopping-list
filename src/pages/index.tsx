@@ -1,15 +1,17 @@
 import { type NextPage } from "next";
+import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { api } from "../utils/api";
 const Home: NextPage = () => {
   const getAllItems = api.getItem.getItems.useQuery();
   const deletedItem = api.deleteItem.deleteItem.useMutation();
-  const handleEdit = (id: string) => {
-    console.log(id);
-  };
   const callRefetch = async () => {
     await getAllItems.refetch();
+  };
+  // todo
+  const handleEdit = (id: string, name: string) => {
+    return;
   };
   const handleDelete = (id: string) => {
     const res = deletedItem.mutateAsync(id);
@@ -41,13 +43,16 @@ const Home: NextPage = () => {
             return (
               <div key={index} className=" flex justify-between">
                 <h3 className="m-auto"> {item.name}</h3>
-                <button
+                <Link
                   className="m-4 rounded-md bg-gray-600 p-3 "
                   type="button"
-                  onClick={() => handleEdit(item.id)}
+                  href={{
+                    pathname: "/editItem",
+                    query: { id: item.id, name: item.name },
+                  }}
                 >
                   Edit
-                </button>
+                </Link>
                 <button
                   className="m-4 rounded-md bg-red-400 p-3"
                   onClick={() => handleDelete(item.id)}
