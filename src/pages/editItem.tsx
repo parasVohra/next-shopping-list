@@ -1,12 +1,12 @@
 import { type NextPage } from "next";
 import { useRouter } from "next/router";
-import { ParsedUrlQuery } from "querystring";
+import type { ParsedUrlQuery } from "querystring";
 import type { ChangeEvent } from "react";
 import { useState } from "react";
 import { api } from "../utils/api";
 export interface editProp extends ParsedUrlQuery {
   name: string;
-  id: string;
+  readonly id: string;
 }
 const EditItem: NextPage = () => {
   const router = useRouter();

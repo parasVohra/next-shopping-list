@@ -1,5 +1,4 @@
 import { type NextPage } from "next";
-import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { api } from "../utils/api";
@@ -9,10 +8,7 @@ const Home: NextPage = () => {
   const callRefetch = async () => {
     await getAllItems.refetch();
   };
-  // todo
-  const handleEdit = (id: string, name: string) => {
-    return;
-  };
+
   const handleDelete = (id: string) => {
     const res = deletedItem.mutateAsync(id);
     res
